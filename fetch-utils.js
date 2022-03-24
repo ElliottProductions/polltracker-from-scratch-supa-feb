@@ -37,3 +37,20 @@ export async function checkAuth() {
 
     if (!user) location.replace('../'); 
 }
+
+export async function createGoblin(goblin) {
+    const response = await client
+        .from('goblins')
+        .insert(goblin);
+    
+    return response;
+
+}
+
+export async function getGoblins(){
+    const response = await client
+        .from('goblins')
+        .select();
+    
+    return response;
+}

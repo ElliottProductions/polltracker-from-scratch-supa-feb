@@ -1,10 +1,16 @@
-import {} from '../fetch-utils.js';
-import { createGoblinPoll } from '../render-utils.js';
+import { createGoblin, getGoblins } from '../fetch-utils.js';
+import { renderGoblinPoll, renderGoblinPollFromArr } from '../render-utils.js';
 
 const pollContainer = document.getElementById('poll-container');
 const questionInput = document.getElementById('question-input');
 const createPollButton = document.getElementById('create-poll');
 const newGoblinContainer = document.querySelector('.new-goblin-here');
+const hpUpButton = document.getElementById('hp-up');
+const hpDownButton = document.getElementById('hp-down');
+const attkUpButton = document.getElementById('attk-up');
+const attkDownButton = document.getElementById('attk-down');
+const finalGoblin = document.getElementById('finish-goblin');
+const oldGoblinContainer = document.querySelector('.old-goblins');
 
 let goblinName = '';
 let goblinhealth = 0;
@@ -13,8 +19,62 @@ let goblinattack = 0;
 createPollButton.addEventListener('click', ()=>{
     goblinName = questionInput.value;
     
-    const newGob = createGoblinPoll(goblinName);
+    displayNewGoblin();
+
+});
+
+hpUpButton.addEventListener('click', ()=>{
+    goblinhealth++;
+    displayNewGoblin();
+});
+
+hpDownButton.addEventListener('click', ()=>{
+    goblinhealth--;
+    displayNewGoblin();
+});
+
+attkUpButton.addEventListener('click', ()=>{
+    goblinattack++;
+    displayNewGoblin();
+});
+
+attkDownButton.addEventListener('click', ()=>{
+    goblinattack--;
+    displayNewGoblin();
+});
+
+function displayNewGoblin(){
+    newGoblinContainer.textContent = '';
+    const newGob = renderGoblinPoll(goblinName, goblinhealth, goblinattack);
 
     newGoblinContainer.append(newGob);
+}
 
+finalGoblin.addEventListener('click', async ()=>{
+    const finishedGoblin = {
+        name: goblinName,
+        hp: goblinhealth,
+        attk: goblinattack,
+    };
+    console.log(goblinName);
+    await createGoblin(finishedGoblin);
+
+    //display past goblins here
+
+    oldGoblinContainer.textContent = '';
+    const goblinArray = await getGoblins();
+
+    for (let goblin of goblinArray){
+        const goblinEl = renderGoblinPollFromArr(goblin);
+
+        oldGoblinContainer.append(goblinEl);
+
+
+    }
+    //reset state
+    goblinName = '';
+    goblinhealth = 0;
+    goblinattack = 0;
+    displayNewGoblin();
+    
 });
