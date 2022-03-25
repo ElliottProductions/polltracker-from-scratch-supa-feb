@@ -54,3 +54,10 @@ export async function getGoblins(){
     
     return response;
 }
+
+export async function deleteGoblin(goblin){
+    await client
+        .from('goblins')
+        .delete()
+        .match({ name: goblin.name });
+}

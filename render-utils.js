@@ -1,3 +1,5 @@
+import { deleteGoblin } from './fetch-utils.js';
+
 export function renderGoblinPoll(goblinName, hp, attk){
     const goblinDiv = document.createElement('div');
     goblinDiv.classList.add('new-gob');
@@ -22,13 +24,19 @@ export function renderGoblinPollFromArr(goblinName){
     const goblinNameLabel = document.createElement('p');
     const GoblinHP = document.createElement('p');
     const GoblinATTK = document.createElement('p');
+    const goblinDelete = document.createElement('button');
 
 
     goblinNameLabel.textContent = goblinName.name;
     GoblinHP.textContent = `HP: ${goblinName.hp}`;
     GoblinATTK.textContent = `ATTK: ${goblinName.attk}`;
+    goblinDelete.textContent = 'Delete';
 
-    goblinDiv.append(goblinNameLabel, GoblinHP, GoblinATTK);
+    goblinDelete.addEventListener('click', ()=>{
+        deleteGoblin(goblinName);
+        goblinDiv.remove();
+    });
+    goblinDiv.append(goblinNameLabel, GoblinHP, GoblinATTK, goblinDelete);
 
     return goblinDiv;
 }
