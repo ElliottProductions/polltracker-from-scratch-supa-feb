@@ -28,7 +28,8 @@ signUpForm.addEventListener('submit', async (e)=>{
 
 signInForm.addEventListener('submit', async (e)=>{
     e.preventDefault();
-    const user = await signUpUser(signInEmail.value, signInPassword.value);
+    console.log(signInEmail.value, signInPassword.value);
+    const user = await signInUser(signInEmail.value, signInPassword.value);
 
     if (user){
         redirectToPolls();

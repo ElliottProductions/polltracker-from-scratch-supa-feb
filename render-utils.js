@@ -1,5 +1,6 @@
 export function renderGoblinPoll(goblinName, hp, attk){
     const goblinDiv = document.createElement('div');
+    goblinDiv.classList.add('new-gob');
     const goblinNameLabel = document.createElement('p');
     const GoblinHP = document.createElement('p');
     const GoblinATTK = document.createElement('p');
@@ -22,7 +23,7 @@ export function renderGoblinPollFromArr(goblinName){
     const GoblinATTK = document.createElement('p');
 
 
-    goblinNameLabel.textContent = goblinName;
+    goblinNameLabel.textContent = goblinName.name;
     GoblinHP.textContent = `HP: ${goblinName.hp}`;
     GoblinATTK.textContent = `ATTK: ${goblinName.attk}`;
 

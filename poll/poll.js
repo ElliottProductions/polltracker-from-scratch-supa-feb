@@ -1,4 +1,4 @@
-import { createGoblin, getGoblins } from '../fetch-utils.js';
+import { createGoblin, getGoblins, logout, checkAuth } from '../fetch-utils.js';
 import { renderGoblinPoll, renderGoblinPollFromArr } from '../render-utils.js';
 
 const pollContainer = document.getElementById('poll-container');
@@ -11,11 +11,17 @@ const attkUpButton = document.getElementById('attk-up');
 const attkDownButton = document.getElementById('attk-down');
 const finalGoblin = document.getElementById('finish-goblin');
 const oldGoblinContainer = document.querySelector('.old-goblins');
+const logOutButton = document.querySelector('.log-out');
+
+checkAuth();
 
 let goblinName = '';
 let goblinhealth = 0;
 let goblinattack = 0;
 
+logOutButton.addEventListener('click', ()=>{
+    logout();
+});
 createPollButton.addEventListener('click', ()=>{
     goblinName = questionInput.value;
     
@@ -63,8 +69,8 @@ finalGoblin.addEventListener('click', async ()=>{
 
     oldGoblinContainer.textContent = '';
     const goblinArray = await getGoblins();
-
-    for (let goblin of goblinArray){
+    console.log(goblinArray);
+    for (let goblin of goblinArray.body){
         const goblinEl = renderGoblinPollFromArr(goblin);
 
         oldGoblinContainer.append(goblinEl);
