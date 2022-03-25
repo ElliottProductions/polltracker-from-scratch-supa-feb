@@ -19,6 +19,16 @@ let goblinName = '';
 let goblinhealth = 0;
 let goblinattack = 0;
 
+window.addEventListener('load', async () => {
+    const goblinArray = await getGoblins();
+    for (let goblin of goblinArray.body){
+        const goblinEl = renderGoblinPollFromArr(goblin);
+
+        oldGoblinContainer.append(goblinEl);
+
+    }
+});
+
 logOutButton.addEventListener('click', ()=>{
     logout();
 });
@@ -71,7 +81,6 @@ finalGoblin.addEventListener('click', async ()=>{
 
     oldGoblinContainer.textContent = '';
     const goblinArray = await getGoblins();
-    console.log(goblinArray);
     for (let goblin of goblinArray.body){
         const goblinEl = renderGoblinPollFromArr(goblin);
 
