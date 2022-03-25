@@ -29,6 +29,7 @@ body {
     
     font-family: 'Titillium Web', sans-serif;
     background-color: var(--color2);
+    
 }
 
 main {
@@ -37,6 +38,7 @@ main {
     justify-content: center;
     align-items: center;
     margin-bottom: calc(var(--footer-height));
+    background-color: rgb(226, 189, 66);
 }
 
 section {
@@ -55,7 +57,7 @@ section {
 
 header {
     display: flex;
-    justify-content: flex-end;
+    justify-content:center;
     background-color: var(--color3);
     height: var(--header-height);
     box-shadow: var(--shadow);
@@ -123,8 +125,14 @@ footer {
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
     flex-wrap:wrap-reverse;
+    
 }
 
+.main-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .vote-area {
     display:flex;
     flex-direction: row;
