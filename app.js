@@ -1,5 +1,5 @@
 // import functions and grab DOM elements
-import { signUpUser, signInUser, logout, redirectToPolls, getUser } from './fetch-utils.js';
+import { signUpUser, signInUser, redirectToPolls } from './fetch-utils.js';
 //import { } from '../half-baked-soccer-keeper-feb/fetch-utils';
 
 const signUpForm = document.getElementById('sign-up');
