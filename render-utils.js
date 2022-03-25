@@ -18,6 +18,7 @@ export function renderGoblinPoll(goblinName, hp, attk){
 ///modufy tgus 
 export function renderGoblinPollFromArr(goblinName){
     const goblinDiv = document.createElement('div');
+    goblinDiv.classList.add('new-gob');
     const goblinNameLabel = document.createElement('p');
     const GoblinHP = document.createElement('p');
     const GoblinATTK = document.createElement('p');

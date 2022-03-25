@@ -1,7 +1,7 @@
 import { createGoblin, getGoblins, logout, checkAuth } from '../fetch-utils.js';
 import { renderGoblinPoll, renderGoblinPollFromArr } from '../render-utils.js';
 
-const pollContainer = document.getElementById('poll-container');
+//const pollContainer = document.getElementById('poll-container');
 const questionInput = document.getElementById('question-input');
 const createPollButton = document.getElementById('create-poll');
 const newGoblinContainer = document.querySelector('.new-goblin-here');
@@ -54,6 +54,8 @@ function displayNewGoblin(){
     const newGob = renderGoblinPoll(goblinName, goblinhealth, goblinattack);
 
     newGoblinContainer.append(newGob);
+
+    
 }
 
 finalGoblin.addEventListener('click', async ()=>{
@@ -64,7 +66,7 @@ finalGoblin.addEventListener('click', async ()=>{
     };
     console.log(goblinName);
     await createGoblin(finishedGoblin);
-
+    newGoblinContainer.textContent = '';
     //display past goblins here
 
     oldGoblinContainer.textContent = '';
@@ -81,6 +83,6 @@ finalGoblin.addEventListener('click', async ()=>{
     goblinName = '';
     goblinhealth = 0;
     goblinattack = 0;
-    displayNewGoblin();
+    //displayNewGoblin();
     
 });
