@@ -81,14 +81,9 @@ finalGoblin.addEventListener('click', async ()=>{
 
     oldGoblinContainer.textContent = '';
     const goblinArray = await getGoblins();
-    displayAllGoblins()
-    for (let goblin of goblinArray.body){
-        const goblinEl = renderGoblinPollFromArr(goblin);
-
-        oldGoblinContainer.append(goblinEl);
-
-
-    }
+    
+    displayAllGoblins(goblinArray.body);
+    
     //reset state
     goblinName = '';
     goblinhealth = 0;
@@ -96,3 +91,13 @@ finalGoblin.addEventListener('click', async ()=>{
     //displayNewGoblin();
     
 });
+
+function displayAllGoblins(goblinsInput){
+    for (let goblin of goblinsInput){
+        const goblinEl = renderGoblinPollFromArr(goblin);
+
+        oldGoblinContainer.append(goblinEl);
+
+
+    }
+}
