@@ -34,7 +34,7 @@ logOutButton.addEventListener('click', ()=>{
 });
 createPollButton.addEventListener('click', ()=>{
     goblinName = questionInput.value;
-    
+    questionInput.value = '';
     displayNewGoblin();
 
 });
@@ -74,13 +74,14 @@ finalGoblin.addEventListener('click', async ()=>{
         hp: goblinhealth,
         attk: goblinattack,
     };
-    console.log(goblinName);
+    
     await createGoblin(finishedGoblin);
     newGoblinContainer.textContent = '';
     //display past goblins here
 
     oldGoblinContainer.textContent = '';
     const goblinArray = await getGoblins();
+    displayAllGoblins()
     for (let goblin of goblinArray.body){
         const goblinEl = renderGoblinPollFromArr(goblin);
 
